@@ -1,0 +1,53 @@
+---
+title: Hello World
+summary: A starter post demonstrating MDX, code blocks, math, and custom components.
+date: 2026-05-01
+tags:
+  - Next.js
+  - MDX
+  - Web Dev
+featured: true
+seo:
+  title: Hello World — Jay Tash
+  description: A starter post demonstrating the blog pipeline on this site.
+---
+
+Welcome to the blog. This post exercises the content pipeline: **Markdown**, fenced code, math, and custom MDX components.
+
+<Callout title="Pipeline check" variant="info">
+  Posts are authored as MDX in the repo, validated at build time, and rendered as static pages.
+</Callout>
+
+## Code blocks
+
+```typescript
+export function greet(name: string) {
+  return `Hello, ${name}!`;
+}
+
+console.log(greet("Jay"));
+```
+
+## Math
+
+Inline math uses $E = mc^2$.
+
+Display math:
+
+$$
+\int_0^1 x^2 \, dx = \frac{1}{3}
+$$
+
+## Custom components
+
+<ProjectShowcase
+  slug="demo-project"
+  title="Demo Project"
+  description="Example embed for showcasing work inside a blog post."
+  href="https://github.com/yourusername"
+  tags={["TypeScript", "React"]}
+/>
+
+## Closing
+
+More posts will land here as the portfolio grows.

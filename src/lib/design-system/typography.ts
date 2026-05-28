@@ -17,5 +17,6 @@ export const typography = {
     "[&_h3]:font-heading [&_h3]:text-xl [&_h3]:font-medium",
     "[&_p]:leading-7 [&_a]:text-primary [&_a]:underline-offset-4 hover:[&_a]:underline",
     "[&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6",
+    "[&_blockquote]:border-l-2 [&_blockquote]:border-border [&_blockquote]:pl-4 [&_blockquote]:text-muted-foreground",
   ),
 } as const;

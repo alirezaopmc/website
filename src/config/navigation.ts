@@ -7,8 +7,8 @@ export type NavItem = {
 export const navigation: NavItem[] = [
   { href: "/", label: "Home", enabled: true },
   { href: "/projects", label: "Projects", enabled: false },
-  { href: "/blog", label: "Blog", enabled: false },
-  { href: "/writing", label: "Writing", enabled: false },
+  { href: "/blog", label: "Blog", enabled: true },
+  { href: "/writing", label: "Writing", enabled: true },
 ];
 
 export const enabledNavigation = navigation.filter((item) => item.enabled);

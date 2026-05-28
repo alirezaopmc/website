@@ -35,9 +35,14 @@ alwaysApply: false
 ## Content
 
 - Types: `src/types/content.ts` (`Project`, `BlogPost`, `Writing`)
-- Long-form text: `typography.prose` + `max-w-prose`
+- Blog MDX: `src/content/blog/*.mdx` — use `typography.prose` + `blog-prose` class on post body
+- Writing: `src/content/writing/*.md` — frontmatter only, external links
+- MDX embeds: `src/components/content/mdx/` — register in `src/mdx-components.tsx`
+- Query blog data via `src/lib/blog/queries.ts`, not direct `content-collections` imports in UI
+- Blog/code styles: `src/styles/blog.css` (imported in blog layout)
 
 ## Docs
 
 - Full reference: `docs/design-system.md`
+- Blog authoring: `docs/blog.md`
 - Agent overview: `AGENTS.md`

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Next.js personal site for projects, blog posts, and technical writing. **Foundation only** — routes beyond `/` are planned but not implemented.
+Next.js personal site for projects, blog posts, and technical writing. Blog and Writing sections are implemented; `/projects` and site shell (header/footer) are still planned.
 
 ## Stack
 
@@ -12,15 +12,16 @@ Next.js personal site for projects, blog posts, and technical writing. **Foundat
 | React 19 | UI |
 | Bun | Package manager & scripts |
 | Tailwind CSS v4 | Styling (`@theme inline`, no `tailwind.config`) |
-| shadcn/ui v4 (`base-nova`, Radix/Base UI) | Owned components in `src/components/ui/` |
+| shadcn/ui v4 (`base-nova`, Base UI) | Owned components in `src/components/ui/` |
+| content-collections | Typed MDX/frontmatter pipeline |
 | Biome | Lint & format |
 | next-themes | Class-based dark mode (`.dark` on `<html>`) |
 
 ## Commands
 
 ```bash
-bun dev          # dev server
-bun run build    # production build
+bun dev          # dev server (drafts visible)
+bun run build    # production build (drafts excluded)
 bun run lint     # biome check
 bun run format   # biome format --write
 bunx shadcn@latest add <name> -y   # add UI primitive
@@ -29,58 +30,77 @@ bunx shadcn@latest add <name> -y   # add UI primitive
 ## Directory map
 
 ```
+content-collections.ts   # blog + writing collection config (root)
 src/
-  app/                 # routes (layout, globals.css, pages)
+  app/                     # routes (/, /blog, /writing)
+  content/
+    blog/                  # *.mdx posts
+    writing/               # *.md frontmatter-only entries
   components/
-    ui/                # shadcn primitives — edit in place, do not duplicate
-    providers/         # ThemeProvider, etc.
-    layout/            # future Header, Footer, Shell
+    ui/                    # shadcn primitives
+    content/               # PostCard, TagList, blog MDX components
+    providers/             # ThemeProvider
+    layout/                # future Header, Footer, Shell
   config/
-    site.ts            # site metadata SSoT
-    navigation.ts      # nav items + enabled flags
+    site.ts                # site metadata SSoT
+    navigation.ts          # nav items + enabled flags
   lib/
-    utils.ts           # cn()
-    design-system/     # typography & layout class recipes
+    blog/                  # queries, derive, seo, tags, mdx-plugins
+    design-system/         # typography & layout recipes
+  mdx-components.tsx       # global MDX component map
   styles/
-    tokens.css         # CSS variables SSoT (colors, layout widths)
+    tokens.css             # design tokens
+    blog.css               # blog prose/code/katex styles
   types/
-    content.ts         # Project, BlogPost, Writing types
+    content.ts             # Project, BlogPost, Writing types
 docs/
-  design-system.md     # token & styling reference
+  design-system.md
+  blog.md                  # authoring reference
 ```
+
+Generated types import: `import { allBlogs } from "content-collections"` — prefer `src/lib/blog/queries.ts` in app code.
 
 ## Hard rules
 
-1. **Colors & spacing** — Use semantic tokens (`bg-background`, `text-muted-foreground`, `max-w-content`). Never hardcode hex/oklch in components. Change `src/styles/tokens.css` first.
-2. **Typography** — Import from `@/lib/design-system` (`typography.heading1`, `typography.prose`). Do not invent one-off text styles.
-3. **Layout** — Use `layout.container`, `layout.section` from design-system. Widths come from CSS vars in tokens.
-4. **UI primitives** — Extend shadcn in `components/ui/` or compose wrappers in `components/layout/` / `components/content/`. Do not npm-install parallel button/card libs.
-5. **Navigation** — Read `src/config/navigation.ts`. Only link `enabled: true` routes until pages exist.
-6. **Content types** — Use `src/types/content.ts` for project/blog/writing data shapes.
-7. **Client components** — Add `"use client"` only when using hooks, events, or browser APIs. shadcn client components already include it.
-8. **No scope creep** — Do not add MDX, CMS, auth, or full page sections unless explicitly requested.
+1. **Colors & spacing** — Semantic tokens only. Change `src/styles/tokens.css` first.
+2. **Typography** — Use `@/lib/design-system` (`typography.prose` for blog body).
+3. **Layout** — Use `layout.container`, `layout.section`, `max-w-prose`.
+4. **UI primitives** — shadcn in `components/ui/`; blog embeds in `components/content/mdx/`.
+5. **Navigation** — Only link `enabled: true` routes in `navigation.ts`.
+6. **Content** — Blog MDX in `src/content/blog/`; writing metadata in `src/content/writing/`.
+7. **Drafts** — Filter via `src/lib/blog/queries.ts`; never bypass draft rules in routes.
+8. **MDX components** — Register in `src/mdx-components.tsx`; document in `docs/blog.md`.
+9. **Client components** — `"use client"` only when needed (`BlogIndex` uses search params).
+10. **No scope creep** — No RSS, search, comments, CMS unless explicitly requested.
+
+## Blog pipeline
+
+- **Collections:** `content-collections.ts` — Zod schemas, MDX compile (Shiki + KaTeX), reading time, tag normalization
+- **Queries:** `getVisibleBlogs()`, `getBlogBySlug()`, `getVisibleWritings()`
+- **SEO:** `src/lib/blog/seo.ts` + optional `seo` frontmatter block
+- **Rendering:** Full SSG (`force-static`); draft slugs excluded from `generateStaticParams`
 
 ## Theme
 
-- `ThemeProvider` in root layout: `attribute="class"`, `defaultTheme="system"`.
-- Tokens: `src/styles/tokens.css` → imported by `src/app/globals.css`.
-- Toggle theme later via a control that calls `useTheme()` from `next-themes`.
+- `ThemeProvider`: `attribute="class"`, `defaultTheme="system"`
+- KaTeX CSS scoped to `/blog` layout only
 
 ## shadcn config
 
-- [`components.json`](components.json): style `base-nova`, baseColor `zinc`, CSS variables on, Tailwind v4 (empty config path).
-- Installed: `button`, `card`, `badge`, `separator`, `skeleton`, `tooltip`.
-- Root layout wraps `TooltipProvider`.
+- [`components.json`](components.json): `base-nova`, `zinc`, CSS variables, Tailwind v4
+- Installed: `button`, `card`, `badge`, `separator`, `skeleton`, `tooltip`
 
 ## Intentionally not built
 
-- `/projects`, `/blog`, `/writing` routes
+- `/projects` route
 - Header/footer/nav shell
-- MDX / contentlayer / CMS
-- OG image asset (`siteConfig.defaultOgImage` placeholder path)
+- RSS feed, search, comments
+- Tag index pages (`/blog/tag/[tag]`)
+- CMS / contentlayer
 - Tests
 
 ## Related docs
 
-- [docs/design-system.md](docs/design-system.md) — tokens, typography, layout recipes
-- [.cursor/rules/design-system.mdc](.cursor/rules/design-system.mdc) — Cursor auto-rules for `src/`
+- [docs/blog.md](docs/blog.md) — authoring, frontmatter, MDX components
+- [docs/design-system.md](docs/design-system.md) — tokens, typography, layout
+- [.cursor/rules/design-system.mdc](.cursor/rules/design-system.mdc) — Cursor rules for `src/`

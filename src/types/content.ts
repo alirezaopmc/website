@@ -1,3 +1,15 @@
+export type SeoMeta = {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  noIndex?: boolean;
+};
+
+export type NormalizedTag = {
+  label: string;
+  slug: string;
+};
+
 export type ContentMeta = {
   title: string;
   slug: string;
@@ -17,13 +29,16 @@ export type Project = ContentMeta & {
 
 export type BlogPost = ContentMeta & {
   kind: "blog";
-  readingTimeMinutes?: number;
+  readingTimeMinutes: number;
+  tagSlugs: NormalizedTag[];
+  seo?: SeoMeta;
 };
 
 export type Writing = ContentMeta & {
   kind: "writing";
   publication?: string;
-  href?: string;
+  href: string;
+  tagSlugs: NormalizedTag[];
 };
 
 export type ContentItem = Project | BlogPost | Writing;

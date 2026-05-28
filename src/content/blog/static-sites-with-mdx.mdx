@@ -1,0 +1,34 @@
+---
+title: Why I Reach for Static Sites and MDX
+summary: Static generation keeps the site fast and cheap; MDX keeps authoring flexible without a CMS.
+date: 2026-04-12
+tags:
+  - Next.js
+  - Architecture
+  - MDX
+seo:
+  description: Notes on combining static site generation with MDX for a personal developer blog.
+---
+
+Most personal sites do not need a database on day one. For a portfolio and blog, **static generation at build time** is usually enough: pages are pre-rendered, hosting stays simple, and there is no runtime content API to maintain.
+
+MDX sits on top of that nicely. You keep posts in git, review them in pull requests, and still embed React components when Markdown alone is not enough — project cards, callouts, or interactive demos later.
+
+<Callout title="Trade-off" variant="note">
+  Static builds mean redeploying when content changes. For a solo developer blog, that is a feature, not a bug.
+</Callout>
+
+## What I optimize for
+
+1. **Type-safe frontmatter** — invalid metadata fails the build, not production.
+2. **One pipeline** — the same post model can feed RSS, search, and SEO later.
+3. **Owned components** — embeds live in the repo next to the design system.
+
+```typescript
+// Conceptual: build-time validation catches bad frontmatter early
+const post = blogFrontmatterSchema.parse(frontmatter);
+```
+
+## When I would add more
+
+I would reach for a CMS or ISR only if non-developers needed to publish often, or if posts changed multiple times per day without redeploys. Until then, MDX in the repo matches how I already work.
