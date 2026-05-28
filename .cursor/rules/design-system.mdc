@@ -1,0 +1,43 @@
+---
+description: Design system and UI conventions for the portfolio site
+globs: src/**/*.{tsx,css}
+alwaysApply: false
+---
+
+# Design System Rules
+
+## Tokens first
+
+- Edit colors/spacing in `src/styles/tokens.css`, not in components.
+- Use semantic utilities: `bg-background`, `text-foreground`, `text-muted-foreground`, `border-border`.
+- Layout widths: `max-w-content`, `max-w-content-wide`, `max-w-prose`, `py-section-y`.
+
+## Imports
+
+- `cn` from `@/lib/utils`
+- Typography/layout from `@/lib/design-system`
+- UI primitives from `@/components/ui/*`
+- Site/nav from `@/config/site`, `@/config/navigation`
+
+## Do not
+
+- Hardcode hex/oklch/rgb in TSX
+- Duplicate shadcn primitives (custom Button/Card)
+- Link nav items with `enabled: false` in `navigation.ts`
+- Add `tailwind.config.*` (Tailwind v4 is CSS-first)
+
+## shadcn
+
+- Style: `base-nova` per `components.json`
+- Add components: `bunx shadcn@latest add <name> -y`
+- Client boundaries: keep `"use client"` on interactive primitives; compose in server components when possible
+
+## Content
+
+- Types: `src/types/content.ts` (`Project`, `BlogPost`, `Writing`)
+- Long-form text: `typography.prose` + `max-w-prose`
+
+## Docs
+
+- Full reference: `docs/design-system.md`
+- Agent overview: `AGENTS.md`

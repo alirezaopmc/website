@@ -1,3 +1,5 @@
+This is a [Next.js](https://nextjs.org) personal portfolio. See [AGENTS.md](AGENTS.md) for stack, conventions, and AI agent guidance.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
