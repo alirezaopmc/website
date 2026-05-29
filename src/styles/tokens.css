@@ -46,6 +46,9 @@
   --prose-width: 65ch;
   --section-y: 4rem;
   --section-y-lg: 6rem;
+  --header-offset: 5.5rem;
+  --header-island-bg: oklch(1 0 0 / 65%);
+  --header-island-border: oklch(0.922 0 0 / 45%);
 }
 
 .dark {
@@ -83,4 +86,6 @@
 
   --brand: var(--primary);
   --brand-foreground: var(--primary-foreground);
+  --header-island-bg: oklch(0.145 0 0 / 72%);
+  --header-island-border: oklch(1 0 0 / 12%);
 }

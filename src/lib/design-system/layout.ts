@@ -7,4 +7,9 @@ export const layout = {
   sectionLg: cn("py-section-y-lg"),
   page: cn("flex min-h-screen flex-col"),
   pageMain: cn("flex flex-1 flex-col"),
+  headerOffset: cn("pt-header-offset"),
+  headerIsland: cn(
+    "w-full max-w-content-wide rounded-full border border-header-island-border",
+    "bg-header-island-bg shadow-sm backdrop-blur-md backdrop-saturate-150",
+  ),
 } as const;

@@ -54,6 +54,9 @@
   --width-content: var(--content-width);
   --width-content-wide: var(--content-width-wide);
   --width-prose: var(--prose-width);
+  --spacing-header-offset: var(--header-offset);
+  --color-header-island-bg: var(--header-island-bg);
+  --color-header-island-border: var(--header-island-border);
 }
 
 @layer base {
