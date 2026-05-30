@@ -35,6 +35,15 @@ const writingFrontmatterSchema = z.object({
   href: z.string().url(),
 });
 
+const aboutBeatFrontmatterSchema = z.object({
+  order: z.number().int().positive(),
+  title: z.string(),
+  year: z.string().optional(),
+  summary: z.string().optional(),
+  draft: z.boolean().default(false),
+  content: z.string(),
+});
+
 const blogs = defineCollection({
   name: "blogs",
   directory: "src/content/blog",
@@ -80,6 +89,23 @@ const writings = defineCollection({
   },
 });
 
+const aboutBeats = defineCollection({
+  name: "aboutBeats",
+  directory: "src/content/about",
+  include: "**/*.mdx",
+  schema: aboutBeatFrontmatterSchema,
+  transform: async (document, context) => {
+    const slug = document._meta.path.replace(/\.mdx$/, "");
+    const body = await compileMDX(context, document);
+
+    return {
+      ...document,
+      slug,
+      body,
+    };
+  },
+});
+
 export default defineConfig({
-  content: [blogs, writings],
+  content: [blogs, writings, aboutBeats],
 });

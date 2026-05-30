@@ -94,6 +94,13 @@
   --color-announcement-bar-bg: var(--announcement-bar-bg);
   --color-header-island-bg: var(--header-island-bg);
   --color-header-island-border: var(--header-island-border);
+  --spacing-story-beat-gap: var(--story-beat-gap);
+  --size-story-path-dot: var(--story-path-dot-size);
+  --width-story-path-rail: var(--story-path-rail);
+  --width-story-photo-inline: var(--story-photo-inline-max);
+  --spacing-story-content-gap: var(--story-content-gap);
+  --spacing-story-reveal-distance: var(--story-reveal-distance);
+  --duration-story-reveal: var(--story-reveal-duration);
 }
 
 @layer base {

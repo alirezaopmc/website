@@ -100,6 +100,15 @@
     var(--path-bar-line-height) +
     var(--path-bar-gap)
   );
+
+  /* About story timeline */
+  --story-beat-gap: 6rem;
+  --story-path-dot-size: 0.75rem;
+  --story-path-rail: 3.5rem;
+  --story-photo-inline-max: 5.5rem;
+  --story-reveal-distance: 0.75rem;
+  --story-reveal-duration: 500ms;
+  --story-content-gap: 2rem;
 }
 
 .dark {
