@@ -47,6 +47,7 @@ export const chrome = {
     "lg:grid-cols-[minmax(var(--width-panel-left-min),var(--width-panel-left-max))_minmax(0,1fr)_minmax(var(--width-panel-right-min),var(--width-panel-right-max))]",
     "lg:divide-x lg:divide-y-0",
   ),
+  weblogGridCenterOnly: cn("grid min-h-[inherit] grid-cols-1"),
   weblogPanel: cn(
     "px-panel-padding-x py-panel-padding-y",
     "lg:px-panel-padding-x-lg lg:py-panel-padding-y-lg",
@@ -56,7 +57,8 @@ export const chrome = {
   iconSm: cn("size-icon-sm"),
   iconMd: cn("size-icon-md"),
   pathBarSlot: cn(
-    "mb-path-bar-gap flex h-path-bar-slot min-h-path-bar-slot w-full shrink-0 items-center",
+    "flex h-path-bar-slot min-h-path-bar-slot w-full shrink-0 items-center",
+    "border-b border-header-island-border",
   ),
   pathBar: cn(
     "w-full px-chrome-padding-x py-path-bar-padding-y sm:px-chrome-padding-x-lg",
@@ -68,4 +70,12 @@ export const chrome = {
   ),
   pathBarCurrent: cn(typography.small, "truncate text-foreground"),
   pathBarSeparator: cn(typography.small, "text-muted-foreground"),
+  profileAvatar: cn(
+    "size-avatar shrink-0 rounded-full border border-border object-cover",
+  ),
+  profileAvatarLg: cn(
+    "size-avatar-lg shrink-0 rounded-full border border-border object-cover",
+  ),
+  sidebarSectionDivider: cn("h-px w-full shrink-0 bg-header-island-border"),
+  sidebarItemDivider: cn("h-px w-full shrink-0 bg-sidebar-divider-item"),
 } as const;

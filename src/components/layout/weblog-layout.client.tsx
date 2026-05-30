@@ -24,21 +24,28 @@ export function WeblogLayoutClient({
 }: WeblogLayoutClientProps) {
   const pathname = usePathname();
   const pathItems = resolvePathBarItems(pathname, blogTitlesBySlug);
+  const isAboutPage = pathname === "/about";
 
   return (
     <div
       className={cn(layout.containerLanding, chrome.landingShell, className)}
     >
-      {pathItems.length > 0 ? (
-        <div className={chrome.pathBarSlot}>
-          <PathBar items={pathItems} />
-        </div>
-      ) : null}
       <div className={layout.bodyIsland}>
-        <div className={chrome.weblogGrid}>
-          <div className={cn(chrome.weblogPanel, "order-2 lg:order-1")}>
-            {left}
+        {pathItems.length > 0 ? (
+          <div className={chrome.pathBarSlot}>
+            <PathBar items={pathItems} />
           </div>
+        ) : null}
+        <div
+          className={
+            isAboutPage ? chrome.weblogGridCenterOnly : chrome.weblogGrid
+          }
+        >
+          {isAboutPage ? null : (
+            <div className={cn(chrome.weblogPanel, "order-2 lg:order-1")}>
+              {left}
+            </div>
+          )}
           <div
             className={cn(
               chrome.weblogPanel,
@@ -48,7 +55,9 @@ export function WeblogLayoutClient({
           >
             <div className={layout.centerContent}>{center}</div>
           </div>
-          <div className={cn(chrome.weblogPanel, "order-3")}>{right}</div>
+          {isAboutPage ? null : (
+            <div className={cn(chrome.weblogPanel, "order-3")}>{right}</div>
+          )}
         </div>
       </div>
     </div>

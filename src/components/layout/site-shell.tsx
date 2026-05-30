@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { LeftSidebar } from "@/components/layout/left-sidebar";
 import { RightSidebar } from "@/components/layout/right-sidebar";
 import { WeblogLayout } from "@/components/layout/weblog-layout";
 import {
@@ -23,7 +24,7 @@ export function SiteShell({ children }: SiteShellProps) {
     <main className={layout.pageMain}>
       <WeblogLayout
         blogTitlesBySlug={blogTitlesBySlug}
-        left={<aside aria-label="Sidebar left" />}
+        left={<LeftSidebar />}
         center={children}
         right={<RightSidebar blogs={recentBlogs} writings={recentWritings} />}
       />

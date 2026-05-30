@@ -87,6 +87,9 @@
   --size-chrome-control: var(--chrome-control-size);
   --size-icon-sm: var(--icon-size-sm);
   --size-icon-md: var(--icon-size-md);
+  --size-avatar: var(--avatar-size);
+  --size-avatar-lg: var(--avatar-size-lg);
+  --color-sidebar-divider-item: var(--sidebar-divider-item);
   --text-micro: var(--font-size-micro);
   --color-announcement-bar-bg: var(--announcement-bar-bg);
   --color-header-island-bg: var(--header-island-bg);

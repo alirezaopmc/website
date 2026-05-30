@@ -13,13 +13,8 @@ export default function BlogPage() {
   const posts = getVisibleBlogs();
 
   return (
-    <>
-      <header className="mb-10 flex flex-col gap-3">
-        <h1 className={typography.heading1}>Blog</h1>
-      </header>
-      <Suspense fallback={<p className={typography.body}>Loading posts…</p>}>
-        <BlogIndex posts={posts} />
-      </Suspense>
-    </>
+    <Suspense fallback={<p className={typography.body}>Loading posts…</p>}>
+      <BlogIndex posts={posts} />
+    </Suspense>
   );
 }

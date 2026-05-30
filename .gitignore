@@ -42,3 +42,6 @@ next-env.d.ts
 
 # content-collections
 .content-collections/
+
+# local-only assets (not committed)
+/local/

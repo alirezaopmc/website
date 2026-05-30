@@ -88,6 +88,9 @@
   --font-size-micro: 0.625rem;
   --icon-size-sm: 0.875rem;
   --icon-size-md: 1rem;
+  --avatar-size: 6rem;
+  --avatar-size-lg: 10rem;
+  --sidebar-divider-item: oklch(0.8 0 0 / 35%);
   --path-bar-padding-y: 0.75rem;
   --path-bar-gap: 0.75rem;
   --path-bar-line-height: 1.25rem;
@@ -141,4 +144,5 @@
     var(--background) 95%,
     transparent
   );
+  --sidebar-divider-item: oklch(1 0 0 / 10%);
 }

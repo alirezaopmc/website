@@ -1,6 +1,16 @@
 import type { PathBarItem } from "@/components/content/path-bar";
 
 const blogSectionLabel = "Blog";
+const aboutSectionLabel = "About Me";
+const writingSectionLabel = "Writing";
+
+export function aboutPath(): PathBarItem[] {
+  return [{ label: aboutSectionLabel }];
+}
+
+export function writingPath(): PathBarItem[] {
+  return [{ label: writingSectionLabel }];
+}
 
 export function blogIndexPath(): PathBarItem[] {
   return [{ label: blogSectionLabel }];
@@ -14,6 +24,14 @@ export function resolvePathBarItems(
   pathname: string,
   blogTitlesBySlug: Record<string, string>,
 ): PathBarItem[] {
+  if (pathname === "/about") {
+    return aboutPath();
+  }
+
+  if (pathname === "/writing") {
+    return writingPath();
+  }
+
   if (pathname === "/blog") {
     return blogIndexPath();
   }
