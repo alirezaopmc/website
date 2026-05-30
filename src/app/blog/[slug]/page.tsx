@@ -2,7 +2,6 @@ import { MDXContent } from "@content-collections/mdx/react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PathBar } from "@/components/content/path-bar";
 import { TagList } from "@/components/content/tag-list";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
@@ -10,7 +9,6 @@ import { formatContentDate } from "@/lib/blog/format";
 import { getBlogBySlug, getPublishedBlogSlugs } from "@/lib/blog/queries";
 import { buildBlogPostMetadata } from "@/lib/blog/seo";
 import { layout, typography } from "@/lib/design-system";
-import { blogPostPath } from "@/lib/navigation/path-bar";
 import { cn } from "@/lib/utils";
 import useMDXComponents from "@/mdx-components";
 
@@ -48,8 +46,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const components = useMDXComponents({});
 
   return (
-    <article className={layout.centerContentProse}>
-      <PathBar items={blogPostPath(post.title)} />
+    <article className={layout.centerContent}>
       <header className="mb-10 flex flex-col gap-4 border-b border-border pb-8">
         <div className="flex flex-wrap items-center gap-2">
           {post.draft ? <Badge variant="outline">Draft</Badge> : null}
@@ -66,7 +63,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <TagList tags={post.tagSlugs} />
       </header>
 
-      <div className={cn(typography.prose, "blog-prose")}>
+      <div className={cn(typography.prosePanel, "blog-prose")}>
         <MDXContent code={post.body} components={components} />
       </div>
 

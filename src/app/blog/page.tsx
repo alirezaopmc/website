@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { BlogIndex } from "@/components/content/blog-index";
-import { PathBar } from "@/components/content/path-bar";
 import { getVisibleBlogs } from "@/lib/blog/queries";
 import { buildBlogIndexMetadata } from "@/lib/blog/seo";
 import { typography } from "@/lib/design-system";
-import { blogIndexPath } from "@/lib/navigation/path-bar";
 
 export const dynamic = "force-static";
 
@@ -16,7 +14,6 @@ export default function BlogPage() {
 
   return (
     <>
-      <PathBar items={blogIndexPath()} />
       <header className="mb-10 flex flex-col gap-3">
         <h1 className={typography.heading1}>Blog</h1>
       </header>
