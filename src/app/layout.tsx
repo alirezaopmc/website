@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { LatestBlogBar } from "@/components/layout/latest-blog-bar";
+import {
+  AnnouncementBarSlot,
+  AnnouncementContentShell,
+  AnnouncementProvider,
+} from "@/components/layout/announcement-provider.client";
+import { LayoutContentOffset } from "@/components/layout/layout-content-offset";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteShell } from "@/components/layout/site-shell";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { siteConfig } from "@/config/site";
-import { getVisibleAnnouncement } from "@/lib/blog/announcement.server";
-import { chrome, layout } from "@/lib/design-system";
-import { cn } from "@/lib/utils";
+import { getLatestBlog } from "@/lib/blog/queries";
+import { chrome } from "@/lib/design-system";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -30,12 +34,29 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const announcement = await getVisibleAnnouncement();
+  const latest = getLatestBlog();
+  const shell = (
+    <>
+      <div className={chrome.fixedShell}>
+        <SiteHeader />
+        {latest ? <AnnouncementBarSlot /> : null}
+      </div>
+      {latest ? (
+        <AnnouncementContentShell>
+          <SiteShell>{children}</SiteShell>
+        </AnnouncementContentShell>
+      ) : (
+        <LayoutContentOffset hasAnnouncement={false}>
+          <SiteShell>{children}</SiteShell>
+        </LayoutContentOffset>
+      )}
+    </>
+  );
 
   return (
     <html lang={siteConfig.locale} suppressHydrationWarning>
@@ -44,21 +65,15 @@ export default async function RootLayout({
       >
         <ThemeProvider>
           <TooltipProvider>
-            <div className={chrome.fixedShell}>
-              <SiteHeader />
-              <LatestBlogBar announcement={announcement} />
-            </div>
-            <div
-              className={cn(
-                announcement
-                  ? layout.headerOffsetWithAnnouncement
-                  : layout.headerOffset,
-                layout.page,
-                "min-h-screen",
-              )}
-            >
-              <SiteShell>{children}</SiteShell>
-            </div>
+            {latest ? (
+              <AnnouncementProvider
+                announcement={{ slug: latest.slug, title: latest.title }}
+              >
+                {shell}
+              </AnnouncementProvider>
+            ) : (
+              shell
+            )}
           </TooltipProvider>
         </ThemeProvider>
       </body>
