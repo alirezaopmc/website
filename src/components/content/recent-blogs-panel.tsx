@@ -1,27 +1,24 @@
 import Link from "next/link";
-import { WritingCardSmall } from "@/components/content/writing-card-small";
-import type { WritingDocument } from "@/lib/blog/queries";
+import { PostCardSmall } from "@/components/content/post-card-small";
+import type { BlogDocument } from "@/lib/blog/queries";
 import { typography } from "@/lib/design-system";
 import { cn } from "@/lib/utils";
 
-type RecentWritingsPanelProps = {
-  items: WritingDocument[];
+type RecentBlogsPanelProps = {
+  items: BlogDocument[];
   className?: string;
 };
 
-export function RecentWritingsPanel({
-  items,
-  className,
-}: RecentWritingsPanelProps) {
+export function RecentBlogsPanel({ items, className }: RecentBlogsPanelProps) {
   return (
     <section
-      aria-label="Recent writing"
+      aria-label="Recent blog posts"
       className={cn("flex flex-col gap-4", className)}
     >
       <div className="flex items-baseline justify-between gap-2">
-        <h2 className={typography.heading3}>Writing</h2>
+        <h2 className={typography.heading3}>Blog</h2>
         <Link
-          href="/writing"
+          href="/blog"
           className={cn(typography.small, "shrink-0 hover:text-primary")}
         >
           View all
@@ -29,12 +26,12 @@ export function RecentWritingsPanel({
       </div>
 
       {items.length === 0 ? (
-        <p className={typography.small}>No writing entries yet.</p>
+        <p className={typography.small}>No blog posts yet.</p>
       ) : (
         <ul className="flex flex-col gap-2">
-          {items.map((item) => (
-            <li key={item.slug}>
-              <WritingCardSmall item={item} />
+          {items.map((post) => (
+            <li key={post.slug}>
+              <PostCardSmall post={post} />
             </li>
           ))}
         </ul>
