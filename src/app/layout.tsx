@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { LatestBlogBar } from "@/components/layout/latest-blog-bar";
 import { SiteHeader } from "@/components/layout/site-header";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { siteConfig } from "@/config/site";
-import { layout } from "@/lib/design-system";
+import { getVisibleAnnouncement } from "@/lib/blog/announcement.server";
+import { chrome, layout } from "@/lib/design-system";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 
@@ -27,11 +29,13 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const announcement = await getVisibleAnnouncement();
+
   return (
     <html lang={siteConfig.locale} suppressHydrationWarning>
       <body
@@ -39,8 +43,18 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <TooltipProvider>
-            <SiteHeader />
-            <div className={cn(layout.headerOffset, "min-h-screen")}>
+            <div className={chrome.fixedShell}>
+              <SiteHeader />
+              <LatestBlogBar announcement={announcement} />
+            </div>
+            <div
+              className={cn(
+                announcement
+                  ? layout.headerOffsetWithAnnouncement
+                  : layout.headerOffset,
+                "min-h-screen",
+              )}
+            >
               {children}
             </div>
           </TooltipProvider>
