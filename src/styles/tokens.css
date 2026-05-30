@@ -88,6 +88,9 @@
   --font-size-micro: 0.625rem;
   --icon-size-sm: 0.875rem;
   --icon-size-md: 1rem;
+  --path-bar-padding-y: 0.75rem;
+  --path-bar-margin-bottom: 1.5rem;
+  --path-bar-bg: color-mix(in oklch, var(--muted) 55%, transparent);
 }
 
 .dark {

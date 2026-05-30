@@ -56,4 +56,16 @@ export const chrome = {
   ),
   iconSm: cn("size-icon-sm"),
   iconMd: cn("size-icon-md"),
+  pathBar: cn(
+    "-mx-panel-padding-x mb-path-bar-margin-bottom border-b border-border",
+    "bg-path-bar-bg px-panel-padding-x py-path-bar-padding-y",
+    "lg:-mx-panel-padding-x-lg lg:px-panel-padding-x-lg",
+  ),
+  pathBarList: cn("flex flex-wrap items-center gap-x-2 gap-y-1"),
+  pathBarLink: cn(
+    typography.small,
+    "text-muted-foreground transition-colors hover:text-primary",
+  ),
+  pathBarCurrent: cn(typography.small, "truncate text-foreground"),
+  pathBarSeparator: cn(typography.small, "text-muted-foreground"),
 } as const;

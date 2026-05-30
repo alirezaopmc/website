@@ -73,6 +73,9 @@
   --spacing-landing-shell-pt-lg: var(--landing-shell-pt-lg);
   --spacing-nav-link-padding-x: var(--nav-link-padding-x);
   --spacing-nav-link-padding-y: var(--nav-link-padding-y);
+  --spacing-path-bar-padding-y: var(--path-bar-padding-y);
+  --spacing-path-bar-margin-bottom: var(--path-bar-margin-bottom);
+  --color-path-bar-bg: var(--path-bar-bg);
   --height-header-island: var(--header-island-height);
   --height-announcement-bar: var(--announcement-bar-height);
   --min-height-body-island: var(--body-island-min-height);
