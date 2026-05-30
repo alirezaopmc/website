@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
+  CardAction,
   CardContent,
   CardDescription,
   CardHeader,
@@ -31,17 +32,20 @@ export function PostCard({ post, className }: PostCardProps) {
           {post.draft ? <Badge variant="outline">Draft</Badge> : null}
           {post.featured ? <Badge>Featured</Badge> : null}
         </div>
+        <CardAction>
+          <time
+            dateTime={post.date.toISOString()}
+            className={cn(typography.small, "text-muted-foreground")}
+          >
+            {formatContentDate(post.date)}
+          </time>
+        </CardAction>
         <CardDescription className={typography.lead}>
           {post.summary}
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
-        <div className={cn(typography.small, "flex flex-wrap gap-x-3 gap-y-1")}>
-          <time dateTime={post.date.toISOString()}>
-            {formatContentDate(post.date)}
-          </time>
-          <span>{post.readingTimeMinutes} min read</span>
-        </div>
+        <p className={typography.small}>{post.readingTimeMinutes} min read</p>
         <TagList tags={post.tagSlugs} />
       </CardContent>
     </Card>
