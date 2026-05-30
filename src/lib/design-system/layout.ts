@@ -13,7 +13,7 @@ export const layout = {
   sectionLg: cn("py-section-y-lg"),
   page: cn("flex min-h-screen flex-col"),
   pageMain: cn("flex flex-1 flex-col"),
-  centerContent: cn("w-full"),
+  centerContent: cn("flex w-full min-w-0 flex-col"),
   centerContentProse: cn("w-full max-w-prose"),
   headerOffset: cn("pt-header-offset"),
   headerOffsetWithAnnouncement: cn("pt-header-offset-with-announcement"),

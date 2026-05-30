@@ -51,17 +51,17 @@ export const chrome = {
     "px-panel-padding-x py-panel-padding-y",
     "lg:px-panel-padding-x-lg lg:py-panel-padding-y-lg",
   ),
-  landingShell: cn(
-    "pb-section-y pt-landing-shell-pt lg:pt-landing-shell-pt-lg",
-  ),
+  weblogCenterPanel: cn("flex min-h-0 min-w-0 w-full flex-col"),
+  landingShell: cn("pb-section-y"),
   iconSm: cn("size-icon-sm"),
   iconMd: cn("size-icon-md"),
-  pathBar: cn(
-    "-mx-panel-padding-x mb-path-bar-margin-bottom border-b border-border",
-    "bg-path-bar-bg px-panel-padding-x py-path-bar-padding-y",
-    "lg:-mx-panel-padding-x-lg lg:px-panel-padding-x-lg",
+  pathBarSlot: cn(
+    "mb-path-bar-gap flex h-path-bar-slot min-h-path-bar-slot w-full shrink-0 items-center",
   ),
-  pathBarList: cn("flex flex-wrap items-center gap-x-2 gap-y-1"),
+  pathBar: cn(
+    "w-full px-chrome-padding-x py-path-bar-padding-y sm:px-chrome-padding-x-lg",
+  ),
+  pathBarList: cn("flex flex-wrap items-center gap-x-2 gap-y-1 font-sans"),
   pathBarLink: cn(
     typography.small,
     "text-muted-foreground transition-colors hover:text-primary",
