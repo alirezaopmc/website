@@ -48,5 +48,13 @@ export function getVisibleWritings() {
     .sort((a, b) => b.date.getTime() - a.date.getTime());
 }
 
+export function getLatestBlog() {
+  return getVisibleBlogs()[0];
+}
+
+export function getRecentWritings(limit = 5) {
+  return getVisibleWritings().slice(0, limit);
+}
+
 export type BlogDocument = ReturnType<typeof getVisibleBlogs>[number];
 export type WritingDocument = ReturnType<typeof getVisibleWritings>[number];
