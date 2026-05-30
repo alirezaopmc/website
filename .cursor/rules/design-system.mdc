@@ -1,48 +1,56 @@
 ---
-description: Design system and UI conventions for the portfolio site
+description: Design system and UI conventions for the portfolio site — mandatory for all UI changes
 globs: src/**/*.{tsx,css}
-alwaysApply: false
+alwaysApply: true
 ---
 
-# Design System Rules
+# Design System Rules (mandatory)
 
-## Tokens first
+**Every UI change MUST use the design system.** Read `docs/design-system.md` before editing components.
 
-- Edit colors/spacing in `src/styles/tokens.css`, not in components.
-- Use semantic utilities: `bg-background`, `text-foreground`, `text-muted-foreground`, `border-border`.
-- Layout widths: `max-w-content`, `max-w-content-wide`, `max-w-prose`, `py-section-y`.
+## SSoT order
 
-## Imports
+1. `src/styles/tokens.css` — new colors, spacing, sizes
+2. `src/app/globals.css` — `@theme inline` wiring only
+3. `src/lib/design-system/` — `layout`, `chrome`, `typography` recipes
+4. `src/components/ui/` — shadcn primitives
+5. Feature components — compose recipes; no raw values
+
+## Required imports
 
 - `cn` from `@/lib/utils`
-- Typography/layout from `@/lib/design-system`
+- `layout`, `chrome`, `typography` from `@/lib/design-system`
 - UI primitives from `@/components/ui/*`
 - Site/nav from `@/config/site`, `@/config/navigation`
 
-## Do not
+## Forbidden in feature components
 
-- Hardcode hex/oklch/rgb in TSX
-- Duplicate shadcn primitives (custom Button/Card)
-- Link nav items with `enabled: false` in `navigation.ts`
-- Add `tailwind.config.*` (Tailwind v4 is CSS-first)
+- Hardcoded colors (`#hex`, `oklch()`, `rgb()`, `hsl()`)
+- Arbitrary Tailwind when a token/recipe exists (`text-[10px]`, `h-14`, `min-h-128`, `px-6` for chrome/panels)
+- Duplicating island styles — use `layout.surfaceIsland`, `layout.bodyIsland`, `chrome.*`
+- Custom Button/Card duplicates of shadcn
+
+## When a recipe is missing
+
+1. Add token to `tokens.css`
+2. Wire in `globals.css` `@theme inline`
+3. Add recipe to `layout.ts`, `chrome.ts`, or `typography.ts`
+4. Use the recipe in the component
 
 ## shadcn
 
 - Style: `base-nova` per `components.json`
-- Add components: `bunx shadcn@latest add <name> -y`
-- Client boundaries: keep `"use client"` on interactive primitives; compose in server components when possible
+- Add: `bunx shadcn@latest add <name> -y`
+- `"use client"` only on interactive primitives
 
 ## Content
 
-- Types: `src/types/content.ts` (`Project`, `BlogPost`, `Writing`)
-- Blog MDX: `src/content/blog/*.mdx` — use `typography.prose` + `blog-prose` class on post body
-- Writing: `src/content/writing/*.md` — frontmatter only, external links
+- Types: `src/types/content.ts`
+- Blog MDX: `typography.prose` + `blog-prose` on post body
+- Query blog data via `src/lib/blog/queries.ts`
 - MDX embeds: `src/components/content/mdx/` — register in `src/mdx-components.tsx`
-- Query blog data via `src/lib/blog/queries.ts`, not direct `content-collections` imports in UI
-- Blog/code styles: `src/styles/blog.css` (imported in blog layout)
 
 ## Docs
 
 - Full reference: `docs/design-system.md`
-- Blog authoring: `docs/blog.md`
 - Agent overview: `AGENTS.md`

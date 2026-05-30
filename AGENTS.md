@@ -46,7 +46,7 @@ src/
     navigation.ts          # nav items + enabled flags
   lib/
     blog/                  # queries, derive, seo, tags, mdx-plugins
-    design-system/         # typography & layout recipes
+    design-system/         # typography, layout, chrome recipes
   mdx-components.tsx       # global MDX component map
   styles/
     tokens.css             # design tokens
@@ -62,16 +62,17 @@ Generated types import: `import { allBlogs } from "content-collections"` — pre
 
 ## Hard rules
 
-1. **Colors & spacing** — Semantic tokens only. Change `src/styles/tokens.css` first.
-2. **Typography** — Use `@/lib/design-system` (`typography.prose` for blog body).
-3. **Layout** — Use `layout.container`, `layout.section`, `max-w-prose`.
-4. **UI primitives** — shadcn in `components/ui/`; blog embeds in `components/content/mdx/`.
-5. **Navigation** — Only link `enabled: true` routes in `navigation.ts`.
-6. **Content** — Blog MDX in `src/content/blog/`; writing metadata in `src/content/writing/`.
-7. **Drafts** — Filter via `src/lib/blog/queries.ts`; never bypass draft rules in routes.
-8. **MDX components** — Register in `src/mdx-components.tsx`; document in `docs/blog.md`.
-9. **Client components** — `"use client"` only when needed (`BlogIndex` uses search params).
-10. **No scope creep** — No RSS, search, comments, CMS unless explicitly requested.
+1. **Design system (mandatory)** — Never hardcode colors, sizes, or spacing in feature components. Flow: `tokens.css` → `globals.css` @theme → `@/lib/design-system` (`layout`, `chrome`, `typography`) → components. If a recipe is missing, add the token and recipe first. See [docs/design-system.md](docs/design-system.md).
+2. **Colors & spacing** — Semantic tokens only. Change `src/styles/tokens.css` first.
+3. **Typography** — Use `@/lib/design-system` (`typography.prose` for blog body).
+4. **Layout** — Use `layout.container`, `layout.section`, `chrome.*` for site shell and landing page.
+5. **UI primitives** — shadcn in `components/ui/`; blog embeds in `components/content/mdx/`.
+6. **Navigation** — Only link `enabled: true` routes in `navigation.ts`.
+7. **Content** — Blog MDX in `src/content/blog/`; writing metadata in `src/content/writing/`.
+8. **Drafts** — Filter via `src/lib/blog/queries.ts`; never bypass draft rules in routes.
+9. **MDX components** — Register in `src/mdx-components.tsx`; document in `docs/blog.md`.
+10. **Client components** — `"use client"` only when needed (`BlogIndex` uses search params).
+11. **No scope creep** — No RSS, search, comments, CMS unless explicitly requested.
 
 ## Blog pipeline
 
