@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { typography } from "@/lib/design-system";
+import { cn } from "@/lib/utils";
 
 type ProjectShowcaseProps = {
   slug: string;
@@ -47,7 +48,10 @@ export function ProjectShowcase({
         {href ? (
           <Link
             href={href}
-            className="text-sm text-primary underline-offset-4 hover:underline"
+            className={cn(
+              typography.small,
+              "text-primary underline-offset-4 hover:underline",
+            )}
             target="_blank"
             rel="noopener noreferrer"
           >

@@ -43,12 +43,51 @@
   --brand-foreground: var(--primary-foreground);
   --content-width: 42rem;
   --content-width-wide: 64rem;
+  --content-width-landing: 78rem;
   --prose-width: 65ch;
   --section-y: 4rem;
   --section-y-lg: 6rem;
   --header-offset: 5.5rem;
+  --header-padding-top: 1rem;
+  --header-island-height: 3.5rem;
+  --header-stack-height: calc(
+    var(--header-padding-top) +
+    var(--header-island-height)
+  );
+  --announcement-bar-height: 2.25rem;
+  --chrome-stack-gap: 0.5rem;
+  --header-offset-with-announcement: calc(
+    var(--header-offset) +
+    var(--chrome-stack-gap) +
+    var(--announcement-bar-height)
+  );
   --header-island-bg: oklch(1 0 0 / 65%);
   --header-island-border: oklch(0.922 0 0 / 45%);
+  --announcement-bar-bg: color-mix(
+    in oklch,
+    var(--background) 95%,
+    transparent
+  );
+  --body-island-min-height: 32rem;
+  --body-island-radius: calc(var(--radius) * 2.2);
+  --chrome-padding-x: 1rem;
+  --chrome-padding-x-lg: 1.5rem;
+  --chrome-control-size: 2rem;
+  --panel-width-left-min: 14rem;
+  --panel-width-left-max: 17rem;
+  --panel-width-right-min: 16rem;
+  --panel-width-right-max: 19rem;
+  --panel-padding-x: 1.5rem;
+  --panel-padding-y: 2rem;
+  --panel-padding-x-lg: 2rem;
+  --panel-padding-y-lg: 2.5rem;
+  --landing-shell-pt: 1.5rem;
+  --landing-shell-pt-lg: 2rem;
+  --nav-link-padding-x: 0.75rem;
+  --nav-link-padding-y: 0.375rem;
+  --font-size-micro: 0.625rem;
+  --icon-size-sm: 0.875rem;
+  --icon-size-md: 1rem;
 }
 
 .dark {
@@ -88,4 +127,9 @@
   --brand-foreground: var(--primary-foreground);
   --header-island-bg: oklch(0.145 0 0 / 72%);
   --header-island-border: oklch(1 0 0 / 12%);
+  --announcement-bar-bg: color-mix(
+    in oklch,
+    var(--background) 95%,
+    transparent
+  );
 }

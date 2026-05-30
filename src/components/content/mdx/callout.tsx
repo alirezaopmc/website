@@ -1,3 +1,4 @@
+import { typography } from "@/lib/design-system";
 import { cn } from "@/lib/utils";
 
 type CalloutProps = {
@@ -18,10 +19,8 @@ export function Callout({ title, variant = "note", children }: CalloutProps) {
     <aside
       className={cn("my-6 rounded-lg border px-4 py-3", variantStyles[variant])}
     >
-      {title ? (
-        <p className="mb-2 font-medium text-foreground">{title}</p>
-      ) : null}
-      <div className="text-sm leading-6 text-muted-foreground">{children}</div>
+      {title ? <p className={cn(typography.label, "mb-2")}>{title}</p> : null}
+      <div className={cn(typography.small, "leading-6")}>{children}</div>
     </aside>
   );
 }

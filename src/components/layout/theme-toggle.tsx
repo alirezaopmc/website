@@ -9,6 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { chrome } from "@/lib/design-system";
 import { cn } from "@/lib/utils";
 
 type ThemePreference = "light" | "dark" | "system";
@@ -33,7 +34,7 @@ export function ThemeToggle() {
   }, []);
 
   if (!mounted) {
-    return <span className="inline-block size-8 shrink-0" aria-hidden />;
+    return <span className={chrome.themeTogglePlaceholder} aria-hidden />;
   }
 
   const preference = normalizeTheme(theme);
@@ -45,14 +46,10 @@ export function ThemeToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        className={cn(
-          "inline-flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-full",
-          "text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground",
-          "outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
-        )}
+        className={chrome.themeToggle}
         aria-label="Change theme"
       >
-        <ActiveIcon className="size-4" />
+        <ActiveIcon className={chrome.iconMd} />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-36">
         {themeOptions.map(({ value, label, icon: Icon }) => (
@@ -61,10 +58,10 @@ export function ThemeToggle() {
             className="cursor-pointer gap-2"
             onClick={() => setTheme(value)}
           >
-            <Icon className="size-4" />
+            <Icon className={chrome.iconMd} />
             <span>{label}</span>
             {preference === value ? (
-              <Check className="ml-auto size-4 text-foreground" />
+              <Check className={cn(chrome.iconMd, "ml-auto text-foreground")} />
             ) : null}
           </DropdownMenuItem>
         ))}

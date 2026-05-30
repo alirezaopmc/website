@@ -53,8 +53,39 @@
   --spacing-section-y-lg: var(--section-y-lg);
   --width-content: var(--content-width);
   --width-content-wide: var(--content-width-wide);
+  --width-content-landing: var(--content-width-landing);
   --width-prose: var(--prose-width);
   --spacing-header-offset: var(--header-offset);
+  --spacing-header-stack-height: var(--header-stack-height);
+  --spacing-announcement-bar-height: var(--announcement-bar-height);
+  --spacing-header-offset-with-announcement: var(
+    --header-offset-with-announcement
+  );
+  --spacing-chrome-stack-gap: var(--chrome-stack-gap);
+  --spacing-header-padding-top: var(--header-padding-top);
+  --spacing-chrome-padding-x: var(--chrome-padding-x);
+  --spacing-chrome-padding-x-lg: var(--chrome-padding-x-lg);
+  --spacing-panel-padding-x: var(--panel-padding-x);
+  --spacing-panel-padding-y: var(--panel-padding-y);
+  --spacing-panel-padding-x-lg: var(--panel-padding-x-lg);
+  --spacing-panel-padding-y-lg: var(--panel-padding-y-lg);
+  --spacing-landing-shell-pt: var(--landing-shell-pt);
+  --spacing-landing-shell-pt-lg: var(--landing-shell-pt-lg);
+  --spacing-nav-link-padding-x: var(--nav-link-padding-x);
+  --spacing-nav-link-padding-y: var(--nav-link-padding-y);
+  --height-header-island: var(--header-island-height);
+  --height-announcement-bar: var(--announcement-bar-height);
+  --min-height-body-island: var(--body-island-min-height);
+  --radius-body-island: var(--body-island-radius);
+  --width-panel-left-min: var(--panel-width-left-min);
+  --width-panel-left-max: var(--panel-width-left-max);
+  --width-panel-right-min: var(--panel-width-right-min);
+  --width-panel-right-max: var(--panel-width-right-max);
+  --size-chrome-control: var(--chrome-control-size);
+  --size-icon-sm: var(--icon-size-sm);
+  --size-icon-md: var(--icon-size-md);
+  --text-micro: var(--font-size-micro);
+  --color-announcement-bar-bg: var(--announcement-bar-bg);
   --color-header-island-bg: var(--header-island-bg);
   --color-header-island-border: var(--header-island-border);
 }

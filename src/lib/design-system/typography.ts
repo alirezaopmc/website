@@ -11,6 +11,15 @@ export const typography = {
   lead: cn("text-lg text-muted-foreground"),
   body: cn("text-base leading-7 text-foreground"),
   small: cn("text-sm text-muted-foreground"),
+  micro: cn(
+    "font-mono text-micro font-medium uppercase tracking-widest text-foreground",
+  ),
+  siteTitle: cn(
+    "font-heading text-sm font-semibold tracking-tight text-foreground sm:text-base",
+  ),
+  navLabel: cn("text-sm font-medium"),
+  label: cn("text-sm font-medium text-foreground"),
+  titleLink: cn("text-sm font-medium text-foreground hover:text-primary"),
   prose: cn(
     "max-w-prose space-y-4 text-foreground",
     "[&_h2]:font-heading [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:tracking-tight",

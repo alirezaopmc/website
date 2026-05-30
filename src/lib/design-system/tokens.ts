@@ -11,10 +11,22 @@ export const cssVars = {
   brandForeground: "--brand-foreground",
   contentWidth: "--content-width",
   contentWidthWide: "--content-width-wide",
+  contentWidthLanding: "--content-width-landing",
   proseWidth: "--prose-width",
   sectionY: "--section-y",
   sectionYlg: "--section-y-lg",
   radius: "--radius",
+  headerOffset: "--header-offset",
+  headerStackHeight: "--header-stack-height",
+  announcementBarHeight: "--announcement-bar-height",
+  headerIslandBg: "--header-island-bg",
+  headerIslandBorder: "--header-island-border",
+  announcementBarBg: "--announcement-bar-bg",
+  bodyIslandMinHeight: "--body-island-min-height",
+  panelWidthLeftMin: "--panel-width-left-min",
+  panelWidthLeftMax: "--panel-width-left-max",
+  panelWidthRightMin: "--panel-width-right-min",
+  panelWidthRightMax: "--panel-width-right-max",
 } as const;
 
 export type CssVarKey = keyof typeof cssVars;
