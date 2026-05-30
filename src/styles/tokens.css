@@ -49,7 +49,7 @@
   --section-y-lg: 6rem;
   --header-offset: var(--header-stack-height);
   --header-padding-top: 0.75rem;
-  --header-island-height: 3.5rem;
+  --header-island-height: 3.75rem;
   --header-stack-height: calc(
     var(--header-padding-top) +
     var(--header-island-height)

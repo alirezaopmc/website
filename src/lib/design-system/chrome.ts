@@ -8,7 +8,7 @@ export const chrome = {
   ),
   headerShell: cn("flex justify-center"),
   headerInner: cn(
-    "pointer-events-auto flex h-header-island-height w-full max-w-content-wide items-center justify-between gap-4",
+    "pointer-events-auto flex h-header-island w-full max-w-content-wide items-center justify-between gap-4",
     "px-chrome-padding-x sm:px-chrome-padding-x-lg",
   ),
   navLink: cn(
