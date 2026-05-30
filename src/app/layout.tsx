@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { LatestBlogBar } from "@/components/layout/latest-blog-bar";
 import { SiteHeader } from "@/components/layout/site-header";
+import { SiteShell } from "@/components/layout/site-shell";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { siteConfig } from "@/config/site";
@@ -52,10 +53,11 @@ export default async function RootLayout({
                 announcement
                   ? layout.headerOffsetWithAnnouncement
                   : layout.headerOffset,
+                layout.page,
                 "min-h-screen",
               )}
             >
-              {children}
+              <SiteShell>{children}</SiteShell>
             </div>
           </TooltipProvider>
         </ThemeProvider>
